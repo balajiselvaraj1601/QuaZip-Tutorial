@@ -1,0 +1,14 @@
+		
+    QuaZip zip_s("E:/example.zip");
+    zip_s.open(QuaZip::mdUnzip);
+
+    QuaZipFile file_s(&zip_s);
+    QString data;
+    for(bool f=zip_s.goToFirstFile(); f; f=zip_s.goToNextFile())
+    {   file_s.open(QIODevice::ReadOnly);
+        {  data=file_s.readAll();
+           qDebug()<<data;
+        }
+        file_s.close();
+    }
+    zip_s.close();
